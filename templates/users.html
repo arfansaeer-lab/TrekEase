@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+Users
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align:center; margin-top:30px;">
+    Registered Users
+</h1>
+
+{% if users %}
+
+    {% for user in users %}
+
+    <div class="trek-card">
+
+    <h3>👤 {{ user.name }}</h3>
+
+    <p><strong>📧 Email:</strong> {{ user.email }}</p>
+
+    <p><strong>📖 Total Bookings:</strong> {{ user.bookings|length }}</p>
+
+    {% if user.is_blacklisted %}
+
+        <p><strong>🔴 Status:</strong> Blacklisted</p>
+
+        <a href="{{ url_for('unblacklist_user', user_id=user.id) }}">
+            <button>Remove Blacklist</button>
+        </a>
+
+    {% else %}
+
+        <p><strong>🟢 Status:</strong> Active</p>
+
+        <a href="{{ url_for('blacklist_user', user_id=user.id) }}">
+            <button>Blacklist</button>
+        </a>
+
+    {% endif %}
+
+</div>
+
+<hr>
+
+    {% endfor %}
+
+{% else %}
+
+<h3 style="text-align:center;">
+    No users found.
+</h3>
+
+{% endif %}
+
+{% endblock %}

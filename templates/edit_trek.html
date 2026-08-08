@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Trek
+{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1>Edit Trek</h1>
+
+    <form method="POST" class="main-form">
+
+        <label>Trek Name</label>
+        <input type="text" name="name" value="{{ trek.name }}" required>
+
+        <label>Location</label>
+        <input type="text" name="location" value="{{ trek.location }}" required>
+
+        <label>Duration</label>
+        <input type="text" name="duration" value="{{ trek.duration }}" required>
+
+        <label>Price</label>
+        <input type="number" name="price" value="{{ trek.price }}" required>
+
+        <label>Difficulty</label>
+        <input type="text" name="difficulty" value="{{ trek.difficulty }}" required>
+
+        <label>Trek Status</label>
+
+        <select name="status">
+
+            <option value="Open"
+                {% if trek.status == "Open" %}selected{% endif %}>
+                Open
+            </option>
+
+            <option value="Closed"
+                {% if trek.status == "Closed" %}selected{% endif %}>
+                Closed
+            </option>
+
+            <option value="Completed"
+                {% if trek.status == "Completed" %}selected{% endif %}>
+                Completed
+            </option>
+
+        </select>
+
+        <label>Available Seats</label>
+
+        <input
+            type="number"
+            name="seats"
+            value="{{ trek.seats }}"
+            required
+        >
+
+        <label>Description</label>
+
+        <textarea
+            name="description"
+            required
+        >{{ trek.description }}</textarea>
+
+        <button type="submit">
+            Update Trek
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

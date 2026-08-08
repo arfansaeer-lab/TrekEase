@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+
+<div class="search-page">
+
+    <h2>Search</h2>
+
+    <form
+        method="GET"
+        action="{{ url_for('search') }}"
+        class="search-container"
+    >
+
+        <input
+            type="text"
+            name="query"
+            placeholder="Search users, staff or treks by name or ID..."
+            value="{{ query }}"
+            required
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+
+    {% if users %}
+
+    <h3 class="search-section-title">Users</h3>
+
+    {% for user in users %}
+
+    <div class="trek-card">
+
+        <h3>{{ user.name }}</h3>
+
+        <p>
+            <strong>ID:</strong> {{ user.id }}
+        </p>
+
+        <p>
+            <strong>Email:</strong> {{ user.email }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+
+
+    {% if staff %}
+
+    <h3 class="search-section-title">Staff</h3>
+
+    {% for member in staff %}
+
+    <div class="trek-card">
+
+        <h3>{{ member.name }}</h3>
+
+        <p>
+            <strong>ID:</strong> {{ member.id }}
+        </p>
+
+        <p>
+            <strong>Email:</strong> {{ member.email }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+
+
+    {% if treks %}
+
+    <h3 class="search-section-title">Treks</h3>
+
+    {% for trek in treks %}
+
+    <div class="trek-card">
+
+        <h3>{{ trek.name }}</h3>
+
+        <p>
+            <strong>ID:</strong> {{ trek.id }}
+        </p>
+
+        <p>
+            <strong>Location:</strong> {{ trek.location }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+
+
+    {% if not users and not staff and not treks and query %}
+
+    <div class="no-treks">
+
+        <h3>No results found</h3>
+
+        <p>
+            Try searching using a different name or ID.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+All Treks
+{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+
+    <h1>All Treks</h1>
+
+    {% for trek in treks %}
+
+    <div class="trek-card">
+
+        <h3>{{ trek.name }}</h3>
+
+        <p>
+            <strong>Location:</strong>
+            {{ trek.location }}
+        </p>
+
+        <p>
+            <strong>Difficulty:</strong>
+            {{ trek.difficulty }}
+        </p>
+
+        <p>
+            <strong>Duration:</strong>
+            {{ trek.duration }} Days
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            {{ trek.status }}
+        </p>
+
+        <p>
+            <strong>Available Seats:</strong>
+            {{ trek.seats }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}
+Staff Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="staff-dashboard">
+
+    <h1>Staff Dashboard</h1>
+
+    {% if trek %}
+
+    <div class="staff-card">
+
+        <h2>{{ trek.name }}</h2>
+
+        <p><strong>Location:</strong> {{ trek.location }}</p>
+
+        <p><strong>Status:</strong> {{ trek.status }}</p>
+
+        <p><strong>Available Seats:</strong> {{ trek.seats }}</p>
+
+        <hr>
+
+        <form method="POST" action="{{ url_for('update_trek_status') }}">
+
+            <label><strong>Update Trek Status:</strong></label>
+
+            <select name="status">
+
+                <option value="Open" {% if trek.status == "Open" %}selected{% endif %}>
+                    Open
+                </option>
+
+                <option value="Closed" {% if trek.status == "Closed" %}selected{% endif %}>
+                    Closed
+                </option>
+
+                <option value="Completed" {% if trek.status == "Completed" %}selected{% endif %}>
+                    Completed
+                </option>
+
+            </select>
+
+            <button type="submit">
+                Update Status
+            </button>
+
+        </form>
+
+        <hr>
+
+        <form method="POST" action="{{ url_for('update_slots') }}">
+
+            <label><strong>Update Available Slots:</strong></label>
+
+            <input
+                type="number"
+                name="seats"
+                value="{{ trek.seats }}"
+                min="0"
+                required
+            >
+
+            <button type="submit">
+                Update Slots
+            </button>
+
+        </form>
+
+        <hr>
+
+        <h3>Participants</h3>
+
+        {% if participants %}
+
+        <div class="participants-list">
+
+            {% for booking in participants %}
+
+            <div class="participant-card">
+
+                <strong>{{ booking.user.name }}</strong>
+
+                <br>
+
+                {{ booking.user.email }}
+
+                <br>
+
+                Booked On:
+                {{ booking.booking_date.strftime("%d-%m-%Y") }}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <p>No participants have booked this trek yet.</p>
+
+        {% endif %}
+
+    </div>
+
+    {% else %}
+
+    <div class="staff-card">
+
+        <h2>No Trek Assigned</h2>
+
+        <p>You have not been assigned a trek yet.</p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

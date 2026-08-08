@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Trek
+{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1>Add Trek</h1>
+
+    <form method="POST" class="main-form">
+
+        <label>Trek Name</label>
+        <input
+            type="text"
+            name="name"
+            placeholder="Enter Trek Name"
+            required
+        >
+
+        <label>Location</label>
+        <input
+            type="text"
+            name="location"
+            placeholder="Enter Location"
+            required
+        >
+
+        <label>Duration (Days)</label>
+        <input
+            type="number"
+            name="duration"
+            placeholder="Number of Days"
+            min="1"
+            required
+        >
+
+        <label>Price (₹)</label>
+        <input
+            type="number"
+            name="price"
+            placeholder="Enter Price"
+            min="0"
+            required
+        >
+
+        <label>Difficulty</label>
+
+        <div class="radio-group">
+
+            <input type="radio" name="difficulty" value="Easy" required>
+            Easy
+
+            <input type="radio" name="difficulty" value="Moderate">
+            Moderate
+
+            <input type="radio" name="difficulty" value="Hard">
+            Hard
+
+        </div>
+
+        <label>Trek Status</label>
+
+        <select name="status">
+
+            <option value="Open">Open</option>
+            <option value="Closed">Closed</option>
+            <option value="Completed">Completed</option>
+
+        </select>
+
+        <label>Available Seats</label>
+
+        <input
+            type="number"
+            name="seats"
+            placeholder="Number of Seats"
+            min="1"
+            required
+        >
+
+        <label>Description</label>
+
+        <textarea
+            name="description"
+            placeholder="Write a short description about the trek..."
+            required
+        ></textarea>
+
+        <button type="submit">
+            Add Trek
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+    <div class="login-container">
+        <h1>Login</h1>
+
+        <form method="POST">
+
+            <input type="email" name="email" placeholder="Enter Email" required>
+
+            <br><br>
+
+            <input type="password" name="password" placeholder="Enter Password" required>
+
+            <br><br>
+
+            <label><b>Login As</b></label><br>
+
+            <div class="role-options"><label><input type="radio" name="role" value="user">
+                    User</label>
+                <!-- <input type="radio" name="role" value="user" checked>
+            User / Admin -->
+                <label><input type="radio" name="role" value="staff">
+                    Staff</label>
+            </div>
+
+
+            <br><br>
+
+            <button type="submit">
+                Login
+            </button>
+
+
+<p class="register-link">
+    Don't have an account?
+    <a href="{{ url_for('register') }}">Register</a>
+</p>
+
+        </form>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

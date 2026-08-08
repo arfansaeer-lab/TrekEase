@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Treks
+{% endblock %}
+
+{% block content %}
+
+<div class="management-container">
+
+    <div class="management-header">
+
+        <h1>Manage Treks</h1>
+
+        <a href="{{ url_for('add_trek') }}">
+            <button>Add New Trek</button>
+        </a>
+
+    </div>
+
+
+    {% for trek in treks %}
+
+    <div class="trek-card">
+
+        <h3>{{ trek.name }}</h3>
+
+        <p><strong>Location:</strong> {{ trek.location }}</p>
+
+        <p><strong>Duration:</strong> {{ trek.duration }} Days</p>
+
+        <p><strong>Price:</strong> ₹{{ trek.price }}</p>
+
+        <p><strong>Difficulty:</strong> {{ trek.difficulty }}</p>
+
+        <p><strong>Seats:</strong> {{ trek.seats }}</p>
+
+
+        <div class="card-actions">
+
+            <a href="{{ url_for('edit_trek', trek_id=trek.id) }}">
+                <button>Edit</button>
+            </a>
+
+            <a href="{{ url_for('delete_trek', trek_id=trek.id) }}">
+                <button>Delete</button>
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

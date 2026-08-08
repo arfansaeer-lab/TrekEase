@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+
+    <h1>Explore the Mountains</h1>
+
+    <p>
+        Adventure begins where roads end.
+    </p>
+
+    <a href="#treks"><button>Explore Treks</button></a>
+
+</div>
+
+<form method="GET" action="{{ url_for('home') }}#treks" class="search-container">
+
+    <input 
+        type="text" 
+        name="search" 
+        placeholder="Search trek name..."
+        value="{{ search }}"
+    >
+
+    <input 
+        type="text" 
+        name="location" 
+        placeholder="Search location..."
+        value="{{ location }}"
+    >
+
+    <select name="difficulty">
+
+        <option value="">All Difficulties</option>
+
+        <option value="Easy" {% if difficulty == "Easy" %}selected{% endif %}>
+            Easy
+        </option>
+
+        <option value="Moderate" {% if difficulty == "Moderate" %}selected{% endif %}>
+            Moderate
+        </option>
+
+        <option value="Hard" {% if difficulty == "Hard" %}selected{% endif %}>
+            Hard
+        </option>
+
+    </select>
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+<br>
+
+<hr>
+<div id="treks">
+<h2 style="text-align: center; margin-top: 40px;">Available Treks</h2>
+
+{% if treks %}
+
+{% for trek in treks %}
+
+<div class="trek-card">
+
+    <h3>{{ trek.name }}</h3>
+
+    <p><strong>Location:</strong> {{ trek.location }}</p>
+
+    <p><strong>Duration:</strong> {{ trek.duration }} Days</p>
+
+    <p><strong>Price:</strong> ₹{{ trek.price }}</p>
+
+    <p><strong>Difficulty:</strong> {{ trek.difficulty }}</p>
+
+    <p><strong>Seats:</strong> {{ trek.seats }}</p>
+
+    <p><strong>Description: </strong>{{ trek.description }}</p>
+
+    <p><strong>Stauts: </strong>{{ trek.status }}</p>
+    {% if current_user.is_authenticated %}
+    {% set user_booking = trek.bookings | selectattr("user_id", "equalto", current_user.id) | first %}
+
+    {% if user_booking %}
+        <p><strong>Your Booking:</strong> {{ user_booking.status }}</p>
+    {% endif %}
+{% endif %}
+    <br>
+
+    {% if current_user.is_authenticated %}
+
+    {% if not current_user.is_admin %}
+
+    {% if trek.seats > 0 %}
+
+        <a href="{{ url_for('book', trek_id=trek.id) }}">
+            <button>Book Now</button>
+        </a>
+
+    {% else %}
+
+        <button disabled>
+            Sold Out
+        </button>
+
+    {% endif %}
+
+{% endif %}
+
+{% else %}
+
+    <a href="{{ url_for('login') }}">
+        <button>Book Now</button>
+    </a>
+
+{% endif %}
+
+</div>
+
+<hr>
+
+{% endfor %}
+</div>
+{% else %}
+<div class="no-treks">
+<h3>No treks found</h3>
+
+<p>
+    Try changing your search or filter options.
+</p>
+</div>
+
+{% endif %}
+
+{% endblock %}

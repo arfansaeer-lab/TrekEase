@@ -1,0 +1,743 @@
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f4f4;
+    color: #222;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    background: #2d6a4f;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1b4332;
+}
+
+button:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 30px 0;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+nav {
+    background: #1b4332;
+    color: white;
+    padding: 18px 50px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h2 {
+    font-size: 28px;
+}
+
+nav h2 a {
+    color: white;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    font-size: 17px;
+}
+
+nav a:hover {
+    color: #95d5b2;
+}
+
+
+/* =========================================================
+   WELCOME MESSAGE
+   ========================================================= */
+
+.welcome-message {
+    text-align: center;
+    margin: 15px 0;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   PAGE CONTAINERS / HEADERS
+   ========================================================= */
+
+.page-header {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.page-header h1 {
+    color: #1b4332;
+    font-size: 38px;
+}
+
+.page-header p {
+    margin-top: 10px;
+    color: #555;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    color: #1b4332;
+}
+
+.hero p {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #555;
+}
+
+.hero button {
+    margin-top: 30px;
+    padding: 15px 35px;
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   TREK SEARCH / SEARCH BAR
+   ========================================================= */
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    width: 90%;
+    max-width: 900px;
+
+    margin: 35px auto;
+    flex-wrap: wrap;
+}
+
+.search-container input,
+.search-container select {
+    padding: 11px 13px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    background: white;
+}
+
+.search-container input {
+    min-width: 220px;
+}
+
+.search-container input:focus,
+.search-container select:focus {
+    outline: none;
+    border-color: #2d6a4f;
+}
+
+.search-container button {
+    padding: 11px 22px;
+}
+
+
+/* =========================================================
+   TREK CARDS
+   ========================================================= */
+
+.trek-card {
+    background: white;
+
+    width: 70%;
+    max-width: 900px;
+
+    margin: 25px auto;
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    text-align: left;
+}
+
+.trek-card h3 {
+    color: #1b4332;
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.trek-card p {
+    margin: 9px 0;
+    font-size: 17px;
+    color: #333;
+}
+
+.trek-card button {
+    margin-top: 12px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+
+/* =========================================================
+   NO RESULTS / NO TREKS
+   ========================================================= */
+
+.no-treks {
+    text-align: center;
+    margin: 50px auto;
+}
+
+.no-treks h3 {
+    color: #1b4332;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.no-treks p {
+    color: #555;
+}
+
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+.form-container {
+    width: 450px;
+    max-width: 90%;
+
+    margin: 50px auto;
+    padding: 35px;
+
+    background: white;
+    border-radius: 15px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1,
+.form-container h2 {
+    text-align: center;
+    color: #1b4332;
+    margin-bottom: 25px;
+}
+
+.main-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.main-form label {
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+.main-form input,
+.main-form textarea,
+.main-form select {
+    width: 100%;
+
+    padding: 11px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    font-size: 15px;
+    background: white;
+}
+
+.main-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.main-form input:focus,
+.main-form textarea:focus,
+.main-form select:focus {
+    outline: none;
+    border-color: #2d6a4f;
+}
+
+.main-form button {
+    width: fit-content;
+    margin: 15px auto 0;
+}
+
+
+/* =========================================================
+   RADIO BUTTONS
+   ========================================================= */
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 5px 0 10px;
+}
+
+.radio-group input {
+    width: auto;
+}
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+.login-container {
+    width: 500px;
+    max-width: 90%;
+
+    margin: 40px auto;
+    padding: 35px;
+
+    background: white;
+    border-radius: 15px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+    color: #1b4332;
+    margin-bottom: 25px;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"],
+.login-container input[type="text"] {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+.login-container input:focus {
+    outline: none;
+    border-color: #2d6a4f;
+}
+
+.login-container button {
+    width: 100%;
+}
+
+.role-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 40px;
+    margin: 15px 0;
+}
+
+.role-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 18px;
+}
+
+.role-options input {
+    margin: 0;
+}
+
+.register-link {
+    margin-top: 20px;
+    color: #555;
+    text-align: center;
+}
+
+.register-link a {
+    color: #1b4332;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard-header {
+    text-align: center;
+    margin: 35px 0;
+}
+
+.dashboard-header h1 {
+    color: #1b4332;
+    font-size: 40px;
+}
+
+.dashboard-header p {
+    margin-top: 10px;
+    color: #555;
+}
+
+.dashboard-cards {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+    width: 90%;
+    margin: 40px auto;
+}
+
+.dashboard-card {
+    background: white;
+
+    width: 220px;
+    padding: 30px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card h2 {
+    color: #1b4332;
+    font-size: 40px;
+    margin: 0;
+}
+
+.dashboard-card p {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #555;
+}
+
+
+/* =========================================================
+   BOOKING CARDS
+   ========================================================= */
+
+.booking-card {
+    width: 60%;
+    max-width: 800px;
+
+    margin: 20px auto;
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.booking-card h3 {
+    color: #1b4332;
+    margin-bottom: 20px;
+}
+
+.booking-card p {
+    margin: 10px 0;
+}
+
+
+/* =========================================================
+   STAFF DASHBOARD
+   ========================================================= */
+
+.staff-dashboard {
+    width: 80%;
+    max-width: 1000px;
+
+    margin: 40px auto;
+}
+
+.staff-dashboard > h1 {
+    text-align: center;
+    color: #1b4332;
+
+    margin-bottom: 30px;
+}
+
+.staff-card {
+    background: white;
+
+    padding: 25px;
+    margin-bottom: 30px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.staff-card h2 {
+    color: #1b4332;
+    margin-bottom: 15px;
+}
+
+.staff-card h3 {
+    color: #1b4332;
+    margin-bottom: 15px;
+}
+
+.staff-card p {
+    margin: 10px 0;
+}
+
+.staff-card form {
+    margin: 25px 0;
+}
+
+.staff-card select,
+.staff-card input {
+    width: 100%;
+
+    padding: 10px;
+    margin: 12px 0;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+.staff-card select:focus,
+.staff-card input:focus {
+    outline: none;
+    border-color: #2d6a4f;
+}
+
+.staff-card hr {
+    margin: 30px 0;
+}
+
+
+/* =========================================================
+   PARTICIPANTS
+   ========================================================= */
+
+.participants-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 20px;
+}
+
+.participant-card {
+    background: #f8f9fa;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   ADMIN SEARCH RESULTS
+   ========================================================= */
+
+.search-page {
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 40px auto;
+}
+
+.search-page > h2 {
+    text-align: center;
+    color: #1b4332;
+
+    margin-bottom: 25px;
+}
+
+.search-section-title {
+    width: 70%;
+    max-width: 900px;
+
+    margin: 35px auto 15px;
+
+    color: #1b4332;
+}
+
+
+/* =========================================================
+   STAFF / USER MANAGEMENT
+   ========================================================= */
+
+.management-container {
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 30px auto;
+}
+
+.management-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.management-header h1 {
+    color: #1b4332;
+}
+
+.management-card {
+    background: white;
+
+    padding: 25px;
+    margin: 20px auto;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    max-width: 800px;
+}
+
+.management-card h3 {
+    color: #1b4332;
+    margin-bottom: 15px;
+}
+
+.management-card p {
+    margin: 8px 0;
+}
+
+.management-actions {
+    display: flex;
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-top: 15px;
+}
+
+
+/* =========================================================
+   ALERTS
+   ========================================================= */
+
+.alert {
+    width: 90%;
+    max-width: 800px;
+
+    margin: 20px auto;
+
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    nav {
+        padding: 15px 20px;
+
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav div {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 15px;
+    }
+
+    .hero {
+        margin-top: 50px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .trek-card {
+        width: 90%;
+    }
+
+    .booking-card {
+        width: 90%;
+    }
+
+    .staff-dashboard {
+        width: 90%;
+    }
+
+    .search-section-title {
+        width: 90%;
+    }
+
+    .form-container {
+        width: 90%;
+    }
+}

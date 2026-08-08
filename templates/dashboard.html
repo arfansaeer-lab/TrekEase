@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align:center; margin-top:20px;">
+    Welcome, {{ current_user.name }} 👋
+</h1>
+
+<p style="text-align:center;">
+    Manage your trekking platform here.
+</p>
+
+{% if current_user.is_admin %}
+
+<div class="dashboard-cards">
+
+    <div class="dashboard-card">
+        <h2>{{ total_users }}</h2>
+        <p>Users</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h2>{{ total_staff }}</h2>
+        <p>Staff</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h2>{{ total_treks }}</h2>
+        <p>Treks</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h2>{{ total_bookings }}</h2>
+        <p>Bookings</p>
+    </div>
+
+</div>
+
+<hr>
+
+<h2 style="text-align:center;">
+    Latest Bookings
+</h2>
+
+{% if bookings %}
+
+    {% for booking in bookings %}
+
+    <div class="trek-card">
+
+        <h3>{{ booking.trek.name }}</h3>
+
+        <p>
+            <strong>User:</strong>
+            {{ booking.user.name }}
+        </p>
+
+        <p>
+            <strong>Email:</strong>
+            {{ booking.user.email }}
+        </p>
+
+        <p>
+            <strong>Location:</strong>
+            {{ booking.trek.location }}
+        </p>
+
+        <p>
+            <strong>Booked On:</strong>
+            {{ booking.booking_date.strftime("%d %b %Y, %I:%M %p") }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <h3 style="text-align:center;">
+        No bookings yet.
+    </h3>
+
+{% endif %}
+
+{% else %}
+
+<h2 style="text-align:center;">
+    My Bookings
+</h2>
+
+{% if current_user.bookings %}
+
+    {% for booking in current_user.bookings %}
+
+    <div class="trek-card">
+
+        <h3>{{ booking.trek.name }}</h3>
+
+        <p>
+            <strong>Location:</strong>
+            {{ booking.trek.location }}
+        </p>
+
+        <p>
+            <strong>Duration:</strong>
+            {{ booking.trek.duration }}
+        </p>
+
+        <p>
+            <strong>Price:</strong>
+            ₹{{ booking.trek.price }}
+        </p>
+
+        <p>
+            <strong>Difficulty:</strong>
+            {{ booking.trek.difficulty }}
+        </p>
+
+        <p>
+            <strong>Booked On:</strong>
+            {{ booking.booking_date.strftime("%d %b %Y, %I:%M %p") }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <h3 style="text-align:center;">
+        You haven't booked any treks yet.
+    </h3>
+
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

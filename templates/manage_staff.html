@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Staff
+{% endblock %}
+
+{% block content %}
+
+<div class="management-container">
+
+    <div class="management-header">
+
+        <h1>Manage Staff</h1>
+
+        <a href="{{ url_for('add_staff') }}">
+            <button>Add Staff</button>
+        </a>
+
+    </div>
+
+
+    {% for staff in staff_members %}
+
+    <div class="management-card">
+
+        <h3>{{ staff.name }}</h3>
+
+        <p>
+            <strong>Email:</strong> {{ staff.email }}
+        </p>
+
+        {% if staff.trek %}
+
+        <p>
+            <strong>Assigned Trek:</strong>
+            {{ staff.trek.name }}
+        </p>
+
+        {% else %}
+
+        <p>
+            <strong>Assigned Trek:</strong> None
+        </p>
+
+        {% endif %}
+
+
+        <p>
+
+            <strong>Status:</strong>
+
+            {% if staff.is_blacklisted %}
+                Blacklisted
+            {% else %}
+                Active
+            {% endif %}
+
+        </p>
+
+
+        <div class="management-actions">
+
+            <a href="{{ url_for('assign_trek', staff_id=staff.id) }}">
+                <button>Assign Trek</button>
+            </a>
+
+            <a href="{{ url_for('delete_staff', staff_id=staff.id) }}">
+                <button>Remove Staff</button>
+            </a>
+
+
+            {% if staff.is_blacklisted %}
+
+            <a href="{{ url_for('unblacklist_staff', staff_id=staff.id) }}">
+                <button>Unblacklist</button>
+            </a>
+
+            {% else %}
+
+            <a href="{{ url_for('blacklist_staff', staff_id=staff.id) }}">
+                <button>Blacklist</button>
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
