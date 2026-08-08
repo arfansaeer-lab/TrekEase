@@ -626,26 +626,26 @@ def edit_profile():
     return render_template("edit_profile.html")
 
 
+with app.app_context():
+
+    db.create_all()
+
+    admin = User.query.filter_by(
+        email="admin@gmail.com"
+    ).first()
+
+    if admin is None:
+
+        admin = User(
+            name="Admin",
+            email="admin@gmail.com",
+            password="admin123",
+            is_admin=True
+        )
+
+        db.session.add(admin)
+        db.session.commit()
+
+
 if __name__ == "__main__":
-
-    with app.app_context():
-
-        db.create_all()
-
-        admin = User.query.filter_by(
-            email="admin@gmail.com"
-        ).first()
-
-        if admin is None:
-
-            admin = User(
-                name="Admin",
-                email="admin@gmail.com",
-                password="admin123",
-                is_admin=True
-            )
-
-            db.session.add(admin)
-            db.session.commit()
-
     app.run(host="0.0.0.0", port=5000, debug=True)
